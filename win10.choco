@@ -1,0 +1,70 @@
+#
+Update-ExecutionPolicy Unrestricted
+Set-WindowsExplorerOptions -EnableShowFileExtensions
+# enable later if needed but we don't want changes during an engagement
+Disable-MicrosoftUpdate
+Disable-BingSearch
+Disable-GameBarTips
+Disable-ComputerRestore -Drive ${Env:SystemDrive}
+
+# Windows Defender exclusions
+New-Item -Path C:\ -Name payloads -ItemType Directory -ErrorAction SilentlyContinue
+New-Item -Path C:\ -Name tools -ItemType Directory -ErrorAction SilentlyContinue
+Add-MpPreference -ExclusionPath "C:\tools\"
+Add-MpPreference -ExclusionPath "C:\payloads\"
+Add-MpPreference -ExclusionPath "C:\ProgramData\Microsoft\Windows\StartMenu\Programs\Tools\"
+$Downloads = Get-ItemPropertyValue 'HKCU:\software\microsoft\windows\currentversion\explorer\shell folders\' -Name '{374DE290-123F-4565-9164-39C4925E467B}'
+Add-MpPreference -ExclusionPath $Downloads
+Set-MpPreference -MAPSReporting Disabled
+Set-MpPreference -SubmitSamplesConsent NeverSend
+# shortcut
+New-Item -ItemType SymbolicLink -Path "$Home\Desktop" -Name "tools" -Value "c:\tools"
+
+# IE first run
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Internet Explorer"
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Internet Explorer\Main"
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Internet Explorer\Main" -Name DisableFirstRunCustomize -Value 1
+
+$BoxStarter.RebootOk=$false
+# choco packages - uncomment packages below if you want them
+choco feature enable -n allowGlobalConfirmation
+#choco install dotnet3.5 
+choco install dotnet-4.6.2 
+choco install dotnet4.7.2 
+choco install git 
+choco install vscode 
+choco install golang 
+choco install sysinternals --params "/InstallDir:C:\tools\sysinternals" 
+choco install 7zip 
+#choco install python 
+#choco install python2 
+#choco install hashcheck 
+#choco install windows-sdk-10-version-2004-windbg 
+choco install rsat 
+
+# fireeye repo
+$scriptPath = ".\fireeye.ps1"
+Invoke-Expression -Command ([System.IO.File]::ReadAllText($scriptPath))
+
+# wallpaper
+Remove-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run -Name bginfo -ErrorAction SilentlyContinue
+Remove-Item C:\BGinfo\ -Recurse -Force -ErrorAction SilentlyContinue
+
+New-Item -Path C:\ -Name BGInfo -ItemType Directory -ErrorAction SilentlyContinue
+Copy-Item -Path .\wallpaper.png' -Destination "C:\BGInfo\wallpaper.png"
+Copy-Item -Path .\bginfo.bgi' -Destination "C:\BGInfo\bginfo.bgi"
+New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\ -Name BGInfo -Value "C:\tools\sysinternals\Bginfo64.exe /accepteula /iC:\BGInfo\bginfo.bgi /timer:0"
+
+# random hostname
+$nr = Get-Random -Maximum 999
+$nr2 = Get-Random -Maximum 99
+$hname = "chbas" + $nr + "n" + $nr2 + "c1"
+Rename-Computer -NewName $hname
+#Rename-Computer -NewName WRKL$nr -DomainCredential $Cred -Restart
+
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo "++++++++++++++++++++++++++++++++++++  SETUP COMPLETE - PLEASE REBOOT  ++++++++++++++++++++++++++++++++++++++"
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+
+exit
+
