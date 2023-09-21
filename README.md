@@ -10,7 +10,7 @@ Once the installation has been completed a BoxStarter icon will appear on the de
 
 ```
 PS > $Cred = Get-Credential $env:USERNAME
-PS > Install-BoxstarterPackage -PackageName .\win10.choco -Credential $Cred
+PS > Install-BoxstarterPackage -PackageName C:\Users\username\attack-vm\win10.choco -Credential $Cred
 ```
 
 Feel free to enable any of the packages above, unless marked a broke. They aren't enabled by default because they might not be useful for everyone. If at any point you want any of these packages you can simply do `choco install <package name>` in a PowerShell terminal.
