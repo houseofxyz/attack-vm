@@ -51,8 +51,8 @@ Remove-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run -N
 Remove-Item C:\BGinfo\ -Recurse -Force -ErrorAction SilentlyContinue
 
 New-Item -Path C:\ -Name BGInfo -ItemType Directory -ErrorAction SilentlyContinue
-Copy-Item -Path .\wallpaper.png' -Destination "C:\BGInfo\wallpaper.png"
-Copy-Item -Path .\bginfo.bgi' -Destination "C:\BGInfo\bginfo.bgi"
+Copy-Item -Path .\wallpaper.png -Destination "C:\BGInfo\wallpaper.png"
+Copy-Item -Path .\bginfo.bgi -Destination "C:\BGInfo\bginfo.bgi"
 New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\ -Name BGInfo -Value "C:\tools\sysinternals\Bginfo64.exe /accepteula /iC:\BGInfo\bginfo.bgi /timer:0"
 
 # random hostname
