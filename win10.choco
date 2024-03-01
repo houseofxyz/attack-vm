@@ -15,6 +15,7 @@ Add-MpPreference -ExclusionPath "C:\payloads\"
 Add-MpPreference -ExclusionPath "C:\ProgramData\Microsoft\Windows\StartMenu\Programs\Tools\"
 $Downloads = Get-ItemPropertyValue 'HKCU:\software\microsoft\windows\currentversion\explorer\shell folders\' -Name '{374DE290-123F-4565-9164-39C4925E467B}'
 Add-MpPreference -ExclusionPath $Downloads
+Set-MpPreference -DisableRealtimeMonitoring $true
 Set-MpPreference -MAPSReporting Disabled
 Set-MpPreference -SubmitSamplesConsent NeverSend
 # shortcut
@@ -67,4 +68,3 @@ echo "++++++++++++++++++++++++++++++++++++  SETUP COMPLETE - PLEASE REBOOT  ++++
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
 exit
-
