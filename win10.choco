@@ -29,17 +29,9 @@ New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Internet Explorer\Main
 $BoxStarter.RebootOk=$false
 # choco packages - uncomment packages below if you want them
 choco feature enable -n allowGlobalConfirmation
-#choco install dotnet3.5 
-choco install dotnet-4.6.2 
-choco install dotnet4.7.2 
-#choco install git 
-#choco install vscode 
+choco install dotnetfx
 choco install golang 
-choco install sysinternals --params "/InstallDir:C:\tools\sysinternals" 
-#choco install 7zip 
-#choco install python 
-#choco install python2 
-#choco install hashcheck 
+choco install sysinternals --params "/InstallDir:C:\tools\sysinternals"
 #choco install windows-sdk-10-version-2004-windbg 
 choco install rsat 
 
