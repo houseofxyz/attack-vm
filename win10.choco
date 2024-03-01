@@ -51,9 +51,8 @@ New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\ -Nam
 # random hostname
 $nr = Get-Random -Maximum 999
 $nr2 = Get-Random -Maximum 99
-$hname = "chbas" + $nr + "n" + $nr2 + "c1"
+$hname = "RND" + $nr + "W" + $nr2 + "RX"
 Rename-Computer -NewName $hname
-#Rename-Computer -NewName WRKL$nr -DomainCredential $Cred -Restart
 
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "++++++++++++++++++++++++++++++++++++  SETUP COMPLETE - PLEASE REBOOT  ++++++++++++++++++++++++++++++++++++++"
