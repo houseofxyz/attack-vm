@@ -25,5 +25,4 @@ C:\ProgramData\Microsoft\Windows\StartMenu\Programs\Tools
 
 So if you don't want Defender "eating" your payloads/tools use these directories.
 
-Also, the hostname is randomly generated in the format `WRKLXXXXXXXXX`.
-
+Also, the hostname is randomly generated in the format `RNDXXXXXXXXX`.
