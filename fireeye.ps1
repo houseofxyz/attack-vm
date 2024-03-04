@@ -37,7 +37,7 @@ choco install burp-free.vm
 choco install evilclippy.vm
 choco install dumpert.vm
 choco install fuzzdb.vm
-choco install hxd.vm
+#choco install hxd.vm
 choco install invokeobfuscation.vm
 choco install invokedosfuscation.vm
 choco install juicypotato.vm
@@ -60,8 +60,8 @@ choco install x64dbg.vm
 #choco install merlin.vm
 choco install resourcehacker.vm
 choco install sqlitebrowser.vm
-choco install winscp.vm
-choco install jre8
+#choco install winscp.vm
+#choco install jre8
 #choco install apimonitor.vm
 #choco install confuserex.vm
 #choco install yara.vm
