@@ -24,7 +24,7 @@ choco install truestedsec-remote-ops-bof.vm
 choco install outflank-c2-tool-collection.vm
 choco install certify.vm
 choco install dotnettojscript.vm
-#choco install idafree.vm
+choco install idafree.vm
 choco install sharphound.vm
 choco install spoolsample.vm
 #choco install sharpview.vm
@@ -37,11 +37,11 @@ choco install burp-free.vm
 choco install evilclippy.vm
 choco install dumpert.vm
 choco install fuzzdb.vm
-#choco install hxd.vm
+choco install hxd.vm
 choco install invokeobfuscation.vm
 choco install invokedosfuscation.vm
 choco install juicypotato.vm
-#choco install ghidra.vm
+choco install ghidra.vm
 choco install petitpotam.vm
 choco install powerzure.vm"
 choco install rubeus.vm
