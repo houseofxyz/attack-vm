@@ -36,7 +36,7 @@ choco install sysinternals --params "/InstallDir:C:\tools\sysinternals"
 choco install rsat 
 
 # fireeye repo
-$scriptPath = "C:\Users\username\attack-vm\fireeye.ps1"
+$scriptPath = $pwd.Path + "\fireeye.ps1"
 Invoke-Expression -Command ([System.IO.File]::ReadAllText($scriptPath))
 
 # wallpaper
